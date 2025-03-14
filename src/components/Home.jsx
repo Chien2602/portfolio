@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import avt from "../assets/image/avtChien.svg";
 
 export default function Home() {
-  const text = "Hi there! 👋 I'm Bao Chien, Web Developer";
+  const text = "Hi there! I'm Bao Chien, Web Developer";
   const [displayedText, setDisplayedText] = useState("");
   const [showCursor, setShowCursor] = useState(true);
   const textRef = useRef(0);

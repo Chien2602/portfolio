@@ -72,10 +72,23 @@ function Header({ sectionRefs }) {
               {item}
             </div>
           ))}
+
+          {/* Social Icons inside dropdown */}
+          <div className="flex justify-center mt-4">
+            <SocialIcon href="https://www.facebook.com/profile.php?id=100074824270647">
+              <FacebookOutlinedIcon />
+            </SocialIcon>
+            <SocialIcon href="https://www.instagram.com/baochien.2602/">
+              <InstagramIcon />
+            </SocialIcon>
+            <SocialIcon href="https://github.com/Chien2602">
+              <GitHubIcon />
+            </SocialIcon>
+          </div>
         </div>
       )}
 
-      {/* Social Icons */}
+      {/* Social Icons for larger screens */}
       <div className="hidden md:flex">
         <SocialIcon href="https://www.facebook.com/profile.php?id=100074824270647">
           <FacebookOutlinedIcon />
