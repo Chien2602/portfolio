@@ -4,6 +4,8 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+import { FaTiktok } from "react-icons/fa6";
+
 
 const menu = ["Home", "Skill", "Project", "Contact", "Education"];
 
@@ -81,6 +83,9 @@ function Header({ sectionRefs }) {
             <SocialIcon href="https://www.instagram.com/baochien.2602/">
               <InstagramIcon />
             </SocialIcon>
+            <SocialIcon href="https://www.tiktok.com/@chien260204">
+              <FaTiktok />
+            </SocialIcon>
             <SocialIcon href="https://github.com/Chien2602">
               <GitHubIcon />
             </SocialIcon>
@@ -95,6 +100,9 @@ function Header({ sectionRefs }) {
         </SocialIcon>
         <SocialIcon href="https://www.instagram.com/baochien.2602/">
           <InstagramIcon />
+        </SocialIcon>
+        <SocialIcon href="https://www.tiktok.com/@chien260204">
+          <FaTiktok />
         </SocialIcon>
         <SocialIcon href="https://github.com/Chien2602">
           <GitHubIcon />
