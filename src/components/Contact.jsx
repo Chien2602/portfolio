@@ -11,7 +11,7 @@ function Contact() {
 
   const sendEmail = (e) => {
     e.preventDefault();
-    
+
     emailjs
       .send(
         "service_427c0ak", // Thay bằng Service ID
@@ -27,18 +27,24 @@ function Contact() {
   };
 
   return (
-    <div className="flex justify-center mx-25 rounded-3xl items-center h-screen bg-gray-900">
-      <div className="p-8 bg-gray-800 rounded-lg shadow-lg w-full max-w-md">
-        <h2 className="text-5xl font-bold text-white text-center mb-6">Contact Me</h2>
+    <div className="flex items-center flex-col justify-center rounded-3xl h-auto py-10 bg-gray-900 px-4 mx-2">
+      <h2 className="text-5xl sm:text-5xl font-bold text-white text-center mb-6">
+          Contact Me
+        </h2>
+      <div className="w-full max-w-lg bg-gray-800 p-8 rounded-lg shadow-lg">
 
-        {isSent && <p className="text-green-400 text-center">✅ Email sent successfully!</p>}
+        {isSent && (
+          <p className="text-green-400 text-center mb-4">
+            ✅ Email sent successfully!
+          </p>
+        )}
 
         <form onSubmit={sendEmail} className="flex flex-col">
           <input
             type="text"
             name="name"
             placeholder="Your Name"
-            className="p-3 mb-3 rounded-md bg-gray-700 text-white"
+            className="p-3 mb-4 rounded-md bg-gray-700 text-white focus:ring-2 focus:ring-blue-500"
             value={form.name}
             onChange={handleChange}
             required
@@ -47,7 +53,7 @@ function Contact() {
             type="email"
             name="email"
             placeholder="Your Email"
-            className="p-3 mb-3 rounded-md bg-gray-700 text-white"
+            className="p-3 mb-4 rounded-md bg-gray-700 text-white focus:ring-2 focus:ring-blue-500"
             value={form.email}
             onChange={handleChange}
             required
@@ -56,7 +62,7 @@ function Contact() {
             name="message"
             placeholder="Your Message"
             rows="4"
-            className="p-3 mb-3 rounded-md bg-gray-700 text-white"
+            className="p-3 mb-4 rounded-md bg-gray-700 text-white focus:ring-2 focus:ring-blue-500"
             value={form.message}
             onChange={handleChange}
             required
