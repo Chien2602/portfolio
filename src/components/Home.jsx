@@ -57,13 +57,17 @@ export default function Home() {
       </div>
 
       {/* Hình ảnh avatar */}
-      <div className="w-full lg:w-1/2 flex justify-center">
+      <motion.div
+        className="w-full lg:w-1/2 flex justify-center"
+        animate={{ y: [0, -20, 0] }} // Di chuyển lên 20px rồi xuống lại
+        transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }} // Hiệu ứng lặp vô hạn
+      >
         <img
           src={avt}
           alt="Avatar"
           className="w-48 h-48 sm:w-64 sm:h-64 lg:w-96 lg:h-96 rounded-full object-cover shadow-lg"
         />
-      </div>
+      </motion.div>
     </div>
   );
 }
