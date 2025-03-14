@@ -1,75 +1,76 @@
-import React, { forwardRef, useRef } from "react";
+import { useState } from "react";
+import emailjs from "@emailjs/browser";
 
-const Contact = forwardRef((props, ref) => {
-  const nameRef = useRef(null);
-  const emailRef = useRef(null);
-  const messageRef = useRef(null);
+function Contact() {
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [isSent, setIsSent] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const sendEmail = (e) => {
     e.preventDefault();
-    alert(`Message sent!\nName: ${nameRef.current.value}\nEmail: ${emailRef.current.value}\nMessage: ${messageRef.current.value}`);
-    // Reset form fields
-    nameRef.current.value = "";
-    emailRef.current.value = "";
-    messageRef.current.value = "";
+    
+    emailjs
+      .send(
+        "service_427c0ak", // Thay bằng Service ID
+        "template_kvi4r95", // Thay bằng Template ID
+        form,
+        "Kq3mOk1ek9S0Y4Tdk" // Thay bằng Public Key
+      )
+      .then(() => {
+        setIsSent(true);
+        setForm({ name: "", email: "", message: "" }); // Reset form
+      })
+      .catch((error) => console.error("Email send error:", error));
   };
 
   return (
-    <section ref={ref} className="flex justify-center items-center flex-col mb-10 px-4">
-      <h1 className="text-center text-5xl text-white font-bold mb-6">CONTACT US</h1>
+    <div className="flex justify-center mx-25 rounded-3xl items-center h-screen bg-gray-900">
+      <div className="p-8 bg-gray-800 rounded-lg shadow-lg w-full max-w-md">
+        <h2 className="text-5xl font-bold text-white text-center mb-6">Contact Me</h2>
 
-      <form 
-        onSubmit={handleSubmit}
-        className="w-full max-w-lg bg-white rounded-lg p-6 shadow-lg"
-      >
-        {/* Name Field */}
-        <div className="mb-4">
-          <label className="text-xl font-medium text-gray-700">Name</label>
-          <input 
-            ref={nameRef}
-            className="w-full h-12 px-3 mt-1 border border-gray-300 rounded-md outline-none focus:ring-2 focus:ring-blue-400 transition duration-200" 
-            type="text" 
-            placeholder="Enter your name"
+        {isSent && <p className="text-green-400 text-center">✅ Email sent successfully!</p>}
+
+        <form onSubmit={sendEmail} className="flex flex-col">
+          <input
+            type="text"
+            name="name"
+            placeholder="Your Name"
+            className="p-3 mb-3 rounded-md bg-gray-700 text-white"
+            value={form.name}
+            onChange={handleChange}
             required
-            aria-label="Enter your name"
           />
-        </div>
-
-        {/* Email Field */}
-        <div className="mb-4">
-          <label className="text-xl font-medium text-gray-700">Email</label>
-          <input 
-            ref={emailRef}
-            className="w-full h-12 px-3 mt-1 border border-gray-300 rounded-md outline-none focus:ring-2 focus:ring-blue-400 transition duration-200" 
-            type="email" 
-            placeholder="Enter your email"
+          <input
+            type="email"
+            name="email"
+            placeholder="Your Email"
+            className="p-3 mb-3 rounded-md bg-gray-700 text-white"
+            value={form.email}
+            onChange={handleChange}
             required
-            aria-label="Enter your email"
           />
-        </div>
-
-        {/* Message Field */}
-        <div className="mb-4">
-          <label className="text-xl font-medium text-gray-700">Message</label>
-          <textarea 
-            ref={messageRef}
-            className="w-full h-32 px-3 mt-1 border border-gray-300 rounded-md outline-none focus:ring-2 focus:ring-blue-400 transition duration-200 resize-none" 
-            placeholder="Write your message here..."
+          <textarea
+            name="message"
+            placeholder="Your Message"
+            rows="4"
+            className="p-3 mb-3 rounded-md bg-gray-700 text-white"
+            value={form.message}
+            onChange={handleChange}
             required
-            aria-label="Write your message"
-          />
-        </div>
-
-        {/* Submit Button */}
-        <button 
-          className="w-full bg-blue-500 text-white py-3 text-lg font-semibold rounded-md hover:bg-blue-600 transition duration-200"
-          type="submit"
-        >
-          Send Message
-        </button>
-      </form>
-    </section>
+          ></textarea>
+          <button
+            type="submit"
+            className="p-3 bg-blue-500 hover:bg-blue-600 text-white rounded-md font-bold transition"
+          >
+            Send Message
+          </button>
+        </form>
+      </div>
+    </div>
   );
-});
+}
 
 export default Contact;
