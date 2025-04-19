@@ -64,7 +64,7 @@ function Header({ sectionRefs }) {
 
       {/* Mobile Dropdown Menu */}
       {isMenuOpen && (
-        <div className="md:hidden absolute top-20 left-0 w-full bg-gray-800 bg-opacity-90 flex flex-col items-center py-4">
+        <div className="md:hidden z-50 absolute top-20 left-0 w-full bg-gray-800 bg-opacity-90 flex flex-col items-center py-4">
           {menu.map((item, index) => (
             <div
               key={index}
